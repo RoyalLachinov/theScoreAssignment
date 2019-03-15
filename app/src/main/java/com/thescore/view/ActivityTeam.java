@@ -54,11 +54,6 @@ public class ActivityTeam extends AppCompatActivity implements TeamViewImpl {
         teamAdapter = new AdapterTeam(teamPresenter, teamList);
         mListViewTeam.setLayoutManager(new LinearLayoutManager(ActivityTeam.this, LinearLayoutManager.VERTICAL, false));
         mListViewTeam.setAdapter(teamAdapter);
-        mListViewTeam.setHasFixedSize(true);
-        mListViewTeam.setItemViewCacheSize(20);
-        mListViewTeam.setDrawingCacheEnabled(true);
-        mListViewTeam.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-        mListViewTeam.getAdapter().notifyDataSetChanged();
     }
 
     @Override

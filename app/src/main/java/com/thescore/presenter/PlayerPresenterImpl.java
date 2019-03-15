@@ -7,7 +7,5 @@ import java.util.ArrayList;
 
 public interface PlayerPresenterImpl {
 
-    void showTeamFullNameAndPoints(Team team);
-
-    void showTeamPlayers(ArrayList<Player> players);
+    void showTeamDetail(Team team);
 }

@@ -7,7 +7,11 @@ import java.util.ArrayList;
 
 public interface PlayerViewImpl {
 
-    void showTeamFullNameAndPoints(Team team);
+    void showTeamLogo(int logo);
+
+    void showTeamName(String teamName);
+
+    void showTeamPoints(String points);
 
     void showTeamPlayers(ArrayList<Player>players);
 

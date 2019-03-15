@@ -46,25 +46,28 @@ public class ActivityPlayer extends AppCompatActivity implements PlayerViewImpl 
         ButterKnife.bind(this);
         getSupportActionBar().setTitle(getResources().getString(R.string.team_detail));
 
-        playerPresenter = new PlayerPresenter(this);
+        playerPresenter = new PlayerPresenter(this,this);
 
         Team team = getIntent().getParcelableExtra("team");
 
-        playerPresenter.showTeamFullNameAndPoints(team);
+        playerPresenter.showTeamDetail(team);
 
 
     }
 
     @Override
-    public void showTeamFullNameAndPoints(Team team) {
+    public void showTeamLogo(int logo) {
+        mImgLogo.setImageResource(logo);
+    }
 
-        mTeamName.setText(team.getFullName());
+    @Override
+    public void showTeamName(String teamName) {
+        mTeamName.setText(teamName);
+    }
 
-        String imageName = "logo_" + team.getFullName().substring(team.getFullName().lastIndexOf(" ") + 1).toLowerCase();
-        int iconResource = getResources().getIdentifier(imageName, "drawable", this.getPackageName());
-        mImgLogo.setImageResource(iconResource);
-        mWinLose.setText("(" + team.getWins() + " - " + team.getLosses() + ", " + (team.getWins() * 2) + " pts)");
-
+    @Override
+    public void showTeamPoints(String points) {
+        mWinLose.setText(points);
     }
 
     @Override
@@ -73,11 +76,6 @@ public class ActivityPlayer extends AppCompatActivity implements PlayerViewImpl 
         adapterPlayers = new AdapterPlayers(players);
         mListViewPlayers.setLayoutManager(new LinearLayoutManager(ActivityPlayer.this, LinearLayoutManager.VERTICAL, false));
         mListViewPlayers.setAdapter(adapterPlayers);
-        mListViewPlayers.setHasFixedSize(true);
-        mListViewPlayers.setItemViewCacheSize(20);
-        mListViewPlayers.setDrawingCacheEnabled(true);
-        mListViewPlayers.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-        mListViewPlayers.getAdapter().notifyDataSetChanged();
     }
 
     @Override
